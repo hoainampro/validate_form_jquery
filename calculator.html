@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css" media="screen">
+        body {
+            font-size: 15px;
+            color: #444;
+            background-color: #EEF3FA;
+        } 
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .calculator {
+            width: 350px;
+            height: auto;
+            margin: 50px auto;
+            padding: 12px;
+            border: 1px solid #656565;
+            border-radius: 3px;
+        }
+        .calculator .box-calculator {
+            width: calc(100% - 20px);
+            border: 1px solid #656565;
+            padding: 5px 10px;
+            font-size: 20px;
+            outline: none;
+            border-bottom: none;
+        }
+        .calculator .box-result {
+            outline: none;
+            width: calc(100% - 20px);
+            border: 1px solid #656565;
+            padding: 5px 10px;
+            font-size: 20px;
+            border-top: none;
+            text-align: right;
+            color: red;
+            font-weight: 600;
+        }
+        .content_button_box {
+            padding-top: 5px;
+        }
+        .calculator .content_button_box button {
+            width: 32.5%;
+            height: 50px;
+            margin-top: 5px;
+            font-size: 20px;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none
+        }
+        .calculator .oppa {
+            background-color: #56AD56;
+        }
+        .calculator .refresh {
+            background-color: #D9534F;
+        }
+        .calculator .delete {
+            background-color: #F0AD4E;
+        }
+        .calculator .number {
+            background-color: #4087C4;
+        }
+        .calculator .dot, 
+        .calculator .equal {
+            background-color: #5BC0DE;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+
+</head>
+    <body>
+        <div class="calculator">
+            <input type="text" name="" class="box-calculator" value="">
+            <input type="text" name="" class="box-result" value="">
+            <div class="content_button_box">
+                <button class="refresh">CE</button>
+                <button class="delete">Del</button>
+                <button class="plus oppa">+</button>
+                <button class="minis oppa">-</button>
+                <button class="multiply oppa">*</button>
+                <button class="divide oppa">/</button>
+                <button class="number">9</button>
+                <button class="number">8</button>
+                <button class="number">7</button>
+                <button class="number">6</button>
+                <button class="number">5</button>
+                <button class="number">4</button>
+                <button class="number">3</button>
+                <button class="number">2</button>
+                <button class="number">1</button>
+                <button class="number">0</button>
+                <button class="dot">.</button>
+                <button class="equal">=</button>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                // function disable 
+                $(".box-calculator").attr('disabled', 'true');
+                $(".box-result").attr('disabled', 'true');
+                $(".content_button_box button.multiply").attr('disabled', 'true');
+                $(".content_button_box button.divide").attr('disabled', 'true');
+                $(".content_button_box button.equal").attr('disabled', 'true');
+            });
+
+            // action click in button CE
+            $('.content_button_box button.refresh').click(function() {
+                $('.box-calculator').val(''); 
+                $('.box-result').val(''); 
+            });
+
+            // action click in button Delete
+            $('.content_button_box button.delete').click(function() {
+                $string = $('.box-calculator').val(); // get value calculator
+                //substring la cat chuoi
+                $('.box-calculator').val($string.substring(0, $string.length -1 ));
+            });
+
+            //click number
+            //function click vao * / + -
+            $('.content_button_box button.number').click(function() {
+
+                $charctor = $(this).text(); //get number click
+                $value_calculator = $('.box-calculator').val(); //val ham get chuoi trong phép tính
+                $('.box-calculator').val($value_calculator + $charctor); // them so click 
+                $('.content_button_box button.oppa').removeAttr('disabled'); // xóa diabled
+                $('.content_button_box button.equal').removeAttr('disabled'); //xóa diabled
+
+            });
+
+            // action nut dot .
+            $('.content_button_box button.dot').click(function() {
+
+                $charctor = $(this).text(); //get dot click
+
+                $value_calculator = $('.box-calculator').val(); //val ham get chuoi 
+                $('.box-calculator').val($value_calculator + $charctor); // add dot click
+                $('.content_button_box button.oppa').attr('disabled', true); //go disable
+                $(this).attr('disabled', true); // disable dot .
+
+            });
+
+            // action click calculation
+            $('.content_button_box button.oppa').on('click', function() {
+
+                $charctor = $(this).text(); //get value  dâu click
+                $value_calculator = $('.box-calculator').val(); //get chuoi value trong ô phép tính 
+                $('.box-calculator').val($value_calculator + $charctor); // get phep toan vua click sau moi chuoi gia tri trong o tính
+                
+                $('.content_button_box button.multiply').attr('disabled', 'true');
+                $('.content_button_box button.divide').attr('disabled', 'true');
+                $('.content_button_box button.dot').removeAttr('disabled');
+
+            });
+            
+            // action result 
+            $('.content_button_box button.equal').on('click', function() {
+
+                $result = $('.box-calculator').val(); //get result
+                //$('.box-result').val(eval($result));
+                //alert(eval($result));
+                $('.box-result').val(eval($result));
+
+            });
+        </script>
+    </body>
+</html>

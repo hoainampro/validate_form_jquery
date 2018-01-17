@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<link rel="stylesheet" href="">
+		<style type="text/css" media="screen">
+			body { font-size: 14px; background-color: #EEF3FA}
+			.form {
+			    padding: 16px;
+				background-color: #2872BA;
+				color: #fff;
+				width: 332px;
+				height: auto;
+				margin: 0 auto;
+			}
+			.form label {
+				font-size: 16px;
+			}
+			.form input[type='text'],
+			.form button[type='submit'] {
+    			width: 100%;
+    			height: 34px;
+			    padding: 12px 20px;
+			    margin: 10px 0;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    box-sizing: border-box;
+			}
+			.form button[type='submit'] {
+				background-color: #E28C19;
+				color: #fff;
+				border: none;
+				outline: none;
+				height: 50px;
+				text-transform: uppercase;
+				font-size: 20px;
+				font-weight: 600;
+				cursor: pointer;
+			}
+			.form button[type='submit'] {
+				cursor: pointer;
+			}
+			.form textarea {
+				width: 100%;
+    			height: 106px;
+			    padding: 12px 20px;
+			    margin-top: 10px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    box-sizing: border-box;
+			}
+			.error {
+				display: none;
+				color: red;
+			}	
+		</style>
+	</head>
+	<body>
+		<div class="form">
+			<form action="" method="post" id="formib">
+				<label for="firstname">First Name *</label><br>
+			    <input id="txtFname" type="text" name="firstname" value="" placeholder="Firstname">
+			    <p id="FirstNameStatus"></p>
+			    <p class="error">Please Enter a Valid</p>
+
+			    <label for="lastname">Last Name *</label><br>
+				<input id="txtLname" type="text" name="lastname" value="" placeholder="Lastname">
+				<p id="LastStatus"></p>
+				<p class="error">Please Enter a Valid</p>
+
+				<label for="phone">Phone *</label><br>
+				<input id="txtPhone" type="text" name="phone" value="" placeholder="Phone">
+				<p id="PhoneStatus"></p>
+				<p class="error">Please Enter a Valid</p>
+
+				<label for="email">Email *</label><br>
+				<input id="txtEmail" type="text" name="email" value="" placeholder="Email">
+				<p id="EmailStatus"></p>
+				<p class="error">Please Enter a Valid</p>
+				
+				<label for="date">Join Date *</label><br>
+				<input id="txtDate" type="text" name="date" value="" placeholder="dd/mm/yyyy">
+				<p id="DateStatus"></p>
+				<p class="error">Please Enter a Valid</p>
+
+				<label for="comment">Comments</label><br>
+				<textarea class="textarea"></textarea>
+
+				<button type="submit" value="submit" id="button">Submit</button>
+			</form>
+		</div>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script type="text/javascript">
+		
+
+		$(document).ready(function() {
+
+			$('#txtFname').change(function(e) {
+		        if (validateName('txtFname')) {
+		            $('#FirstNameStatus').html('Valid firstname correct');
+		            $('#FirstNameStatus').css('color', 'green');
+		        }
+		        else {
+		            $('#FirstNameStatus').html('Invalid, please input field firstname');
+		            $('#FirstNameStatus').css('color', 'red');
+		        }
+		    });
+
+		    $('#txtLname').change(function(e) {
+		        if (validateLName('txtLname')) {
+		            $('#LastStatus').html('Valid firstname correct');
+		            $('#LastStatus').css('color', 'green');
+		        }
+		        else {
+		            $('#LastStatus').html('Invalid, please input field firstname');
+		            $('#LastStatus').css('color', 'red');
+		        }
+		    });
+
+		    $('#txtPhone').change(function(e) {
+		        if (validatePhone('txtPhone')) {
+		            $('#PhoneStatus').html('Valid phonenumber correct');
+		            $('#PhoneStatus').css('color', 'green');
+		        }
+		        else {
+		            $('#PhoneStatus').html('Invalid, please input field phonenumber');
+		            $('#PhoneStatus').css('color', 'red');
+		        }
+		    });
+
+		    $('#txtEmail').change(function(e) {
+		        if (validateEmail('txtEmail')) {
+		            $('#EmailStatus').html('Valid email correct');
+		            $('#EmailStatus').css('color', 'green');
+		        }
+		        else {
+		            $('#EmailStatus').html('Invalid email, please input field email');
+		            $('#EmailStatus').css('color', 'red');
+		        }
+		    });
+
+		    $('#txtDate').change(function(e) {
+		        if (validateDate('txtDate')) {
+		            $('#DateStatus').html('Valid date correct');
+		            $('#DateStatus').css('color', 'green');
+		        }
+		        else {
+		            $('#DateStatus').html('Invalid date, please input field date');
+		            $('#DateStatus').css('color', 'red');
+		        }
+		    });
+
+		});
+
+		function validateName(txtFname) {
+		    var a = document.getElementById(txtFname).value;
+		    var filter = /^([a-zA-Z]{3,16})$/;
+		    if (filter.test(a)) {
+		        return true;
+		    }
+		    else {
+		        return false;
+		    }
+		}
+		function validateLName(txtLname) {
+		    var a = document.getElementById(txtLname).value;
+		    var filter = /^([a-zA-Z]{3,16})$/;
+		    if (filter.test(a)) {
+		        return true;
+		    }
+		    else {
+		        return false;
+		    }
+		}
+
+		function validatePhone(txtPhone) {
+		    var a = document.getElementById(txtPhone).value;
+		    var filter = /^[0-9-+]+$/;
+		    if (filter.test(a)) {
+		        return true;
+		    }
+		    else {
+		        return false;
+		    }
+		}
+
+		function validateEmail(txtEmail) {
+			var a = document.getElementById(txtEmail).value;
+		    var filter = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		    if (filter.test(a)) {
+		        return true;
+		    }
+		    else {
+		        return false;
+		    }
+      	}
+		
+		function validateDate(txtDate) {
+			var a = document.getElementById(txtDate).value;
+		    var filter = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+		    if (filter.test(a)) {
+		        return true;
+		    }
+		    else {
+		        return false;
+		    }
+      	}
+
+
+		$(document).ready(function() {
+
+			
+			$('#button').on('click', function() {
+
+				//alert('adad');
+				$('input').each(function() {
+
+					var input = $(this).val();
+					
+					if( input == '') {
+						$(this).closest('#formib').find('.error').css('display','block');
+					} else {
+						$(this).closest('#formib').find('.error').css('display','none');
+					}
+					});
+					return false;
+		        });
+		        
+			// });
+
+		});
+
+
+	</script>	
+	</body>
+</html>
