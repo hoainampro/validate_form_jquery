@@ -50,40 +50,31 @@
 			    display: inline-block;
 			    border: 1px solid #ccc;
 			    box-sizing: border-box;
-			}
-			.error {
-				display: none;
-				color: red;
 			}	
 		</style>
 	</head>
 	<body>
 		<div class="form">
-			<form action="" method="post" id="formib">
+			<form action="calculator.html" method="post" id="formib">
 				<label for="firstname">First Name *</label><br>
 			    <input id="txtFname" type="text" name="firstname" value="" placeholder="Firstname">
 			    <p id="FirstNameStatus"></p>
-			    <p class="error">Please Enter a Valid</p>
 
 			    <label for="lastname">Last Name *</label><br>
 				<input id="txtLname" type="text" name="lastname" value="" placeholder="Lastname">
 				<p id="LastStatus"></p>
-				<p class="error">Please Enter a Valid</p>
 
 				<label for="phone">Phone *</label><br>
 				<input id="txtPhone" type="text" name="phone" value="" placeholder="Phone">
 				<p id="PhoneStatus"></p>
-				<p class="error">Please Enter a Valid</p>
 
 				<label for="email">Email *</label><br>
 				<input id="txtEmail" type="text" name="email" value="" placeholder="Email">
 				<p id="EmailStatus"></p>
-				<p class="error">Please Enter a Valid</p>
 				
 				<label for="date">Join Date *</label><br>
 				<input id="txtDate" type="text" name="date" value="" placeholder="dd/mm/yyyy">
 				<p id="DateStatus"></p>
-				<p class="error">Please Enter a Valid</p>
 
 				<label for="comment">Comments</label><br>
 				<textarea class="textarea"></textarea>
@@ -106,6 +97,7 @@
 		            $('#FirstNameStatus').html('Invalid, please input field firstname');
 		            $('#FirstNameStatus').css('color', 'red');
 		        }
+		      
 		    });
 
 		    $('#txtLname').change(function(e) {
@@ -208,31 +200,34 @@
 		    }
       	}
 
+		// $(document).ready(function() {
+		// 	$( "#button" ).prop( "disabled", true );
+		// 	$('#button').on('click', function() {
+				
+		// 		$('input').each(function() {
+		// 			//alert('áda');
+		// 			var input = $(this).val();
+		// 			if( input == '') {
+		// 					$( "#button" ).prop( "disabled", false );
+						
+		// 				} else {
+		// 					$( "#button" ).prop( "disabled", true );
+		// 				}
+		// 				return false;
+		// 			});
+		// 		});	
 
+		// });
 		$(document).ready(function() {
-
-			
-			$('#button').on('click', function() {
-
-				//alert('adad');
-				$('input').each(function() {
-
-					var input = $(this).val();
-					
-					if( input == '') {
-						$(this).closest('#formib').find('.error').css('display','block');
-					} else {
-						$(this).closest('#formib').find('.error').css('display','none');
-					}
-					});
-					return false;
-		        });
-		        
-			// });
-
-		});
-
-
+		    $('button[type="submit"]').attr('disabled', true);
+			$('input[type="text"]').on('keyup',function() {
+			    if($(this).val() != '') {
+			        $('button[type="submit"]').attr('disabled' , false);
+			    }else{
+			        $('button[type="submit"]').attr('disabled' , true);
+			    }
+			});
+	 	});
 	</script>	
 	</body>
 </html>
