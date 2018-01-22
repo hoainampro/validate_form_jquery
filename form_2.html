@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<link rel="stylesheet" href="">
+		<style type="text/css" media="screen">
+			body { font-size: 14px; background-color: #EEF3FA}
+			.form {
+			    padding: 16px;
+				background-color: #2872BA;
+				color: #fff;
+				width: 332px;
+				height: auto;
+				margin: 0 auto;
+			}
+			.form label {	
+				font-size: 16px;
+			}
+			.form input[type='text'],
+			.form button[type='submit'] {
+    			width: 100%;
+    			height: 34px;
+			    padding: 12px 20px;
+			    margin: 10px 0;
+			    display: inline-block;
+			    box-sizing: border-box;
+			}
+			.form button[type='submit'] {
+				background-color: #E28C19;
+				color: #fff;
+				border: none;
+				outline: none;
+				height: 50px;
+				text-transform: uppercase;
+				font-size: 20px;
+				font-weight: 600;
+				cursor: pointer;
+			}
+			.form button[type='submit'] {
+				cursor: pointer;
+			}
+			.form textarea {
+				width: 100%;
+    			height: 106px;
+			    padding: 12px 20px;
+			    margin-top: 10px;
+			    display: inline-block;
+			    box-sizing: border-box;
+			}	
+			.valid + .error_show {
+				display: none;
+			}		
+			.error {
+				display: none;
+			}
+			.error_show {
+				color: red;
+			}
+			
+			input.invalid, textarea.invalid {
+				border: 2px solid red;
+			}
+			
+			input.valid, textarea.valid {
+				border: 2px solid green;
+			}
+		</style>
+
+		<script type='text/javascript' src='jquery.min.js'></script>
+		<script>
+			$(document).ready(function() {
+				// txtFname
+				$('#formib_firstname').on('input', function() {
+					var input=$(this);
+					var is_fname=input.val();
+					if(is_fname) {
+						input.removeClass("invalid").addClass("valid");
+					} else {
+						input.removeClass("valid").addClass("invalid");
+					}
+				});
+
+				// txtLname
+				$('#formib_lastname').on('input', function() {
+					var input=$(this);
+					var is_lname=input.val();
+					if(is_lname){
+						input.removeClass("invalid").addClass("valid");
+					}   else {
+						input.removeClass("valid").addClass("invalid");
+					}
+				});
+
+				//txtPhone
+				$('#formib_phone').on('input', function() {
+					var input=$(this);
+					var re = /^[0-9-+]+$/;
+					var is_phone=re.test(input.val());
+					if(is_phone){
+						input.removeClass("invalid").addClass("valid");
+					}  else {
+						input.removeClass("valid").addClass("invalid");
+					}
+				});
+
+				//txtEmail
+				$('#formib_email').on('input', function() {
+					var input=$(this);
+					var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+					var is_email=re.test(input.val());
+					if(is_email) {
+							input.removeClass("invalid").addClass("valid");
+						}  else {
+							input.removeClass("valid").addClass("invalid");
+						}
+				});
+
+				//txtDate
+				$('#formib_date').on('input', function() {
+					var input=$(this);
+					var re = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+					var is_date=re.test(input.val());
+					if(is_date) {
+						input.removeClass("invalid").addClass("valid");
+					}  else {
+						input.removeClass("valid").addClass("invalid");
+					}
+				});
+				//textarea
+				// $('#formib_message').keyup(function(event) {
+				// 	var input=$(this);
+				// 	var message=$(this).val();
+				// 	//console.log(message);
+				// 	if(message) {
+				// 		input.removeClass("invalid").addClass("valid");
+				// 	} else {
+				// 		input.removeClass("valid").addClass("invalid");
+				// 	}	
+				// });
+				//submit
+				$("#button").click(function(event) {
+					//alert('cậdsad');
+					var form_data=$("#formib").serializeArray();
+					//console.log(form_data);
+					var error_free=true;
+					for (var input in form_data) {
+						var element = $("#formib_"+form_data[input]['name']);
+						//console.log(element);
+						var valid=element.hasClass("valid");
+						var error_element=$("p", element.parent());
+						if (!valid) {
+							error_element.removeClass("error").addClass("error_show"); error_free=false;
+							} else { 
+								error_element.removeClass("error_show").addClass("error_show");
+								error_free=false;
+						}
+					}
+					if (!error_free) {
+						event.preventDefault(); 
+					}
+					else {
+						alert('No errors: Form will be submitted');
+					}
+				});
+
+				});
+		</script>
+	</head>
+	<body>
+		<div class="form">
+			<form id="formib" action="action.html" method="post">
+				<!-- Name -->
+				<label for="formib_firstname">First Name *</label><br>
+			    <input id="formib_firstname" type="text" name="firstname">
+			    <p class="error">This field is required</p>
+
+			    <!-- Last Name -->
+			    <label for="formib_lastname">Last Name *</label><br>
+				<input id="formib_lastname" type="text" name="lastname">
+				<p class="error">This field is required</p>
+
+				<!-- Phone -->
+				<label for="formib_phone">Phone *</label><br>
+				<input id="formib_phone" type="text" name="phone">
+				<p class="error">This field is required</p>
+
+				<!-- Email -->
+				<label for="formib_email">Email *</label><br>
+				<input id="formib_email" type="text" name="email">
+				<p class="error">This field is required</p>
+				
+				<!-- Date -->
+				<label for="formib_date">Join Date *</label><br>
+				<input id="formib_date" type="text" name="date" placeholder="dd/mm/yyyy">
+				<p class="error">This field is required</p>
+
+				<!-- Comments -->
+				<label for="formib_message">Comments</label><br>
+				<textarea id=""></textarea>
+				
+				<button type="submit" value="submit" id="button">Submit</button>
+			</form>
+		</div>
+	<!-- <script type="text/javascript">
+
+		$(document).ready(function() {
+			$('button[type="submit"]').on('click', function() {
+				//alert('dadad');
+				$('input').each(function() {
+					var input = $(this).val();
+
+				    if( input == '') {
+						alert('please valid field');		
+						return false;		    	
+				    }
+				});
+
+			});
+	 	});
+
+	</script>	 -->
+	</body>
+</html>

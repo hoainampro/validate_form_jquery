@@ -79,7 +79,7 @@
 				<label for="comment">Comments</label><br>
 				<textarea class="textarea"></textarea>
 
-				<button type="submit" value="submit" id="button">Submit</button>
+				<button type="submit" value="submit" >Submit</button>
 			</form>
 		</div>
 	<script src="http://code.jquery.com/jquery.js"></script>
@@ -87,60 +87,82 @@
 		
 
 		$(document).ready(function() {
+			var check;
 
 			$('#txtFname').change(function(e) {
 		        if (validateName('txtFname')) {
-		            $('#FirstNameStatus').html('Valid firstname correct');
-		            $('#FirstNameStatus').css('color', 'green');
+		            //$('#FirstNameStatus').html('Valid firstname correct');
+		            $('#FirstNameStatus').css('display', 'none');
+		            check = 1;
 		        }
 		        else {
+		            check = 0;
 		            $('#FirstNameStatus').html('Invalid, please input field firstname');
 		            $('#FirstNameStatus').css('color', 'red');
+		            $('#FirstNameStatus').css('display', 'block');
 		        }
 		      
 		    });
 
 		    $('#txtLname').change(function(e) {
 		        if (validateLName('txtLname')) {
-		            $('#LastStatus').html('Valid firstname correct');
-		            $('#LastStatus').css('color', 'green');
+		            $('#LastStatus').css('display', 'none');
+		            check = 1;
 		        }
 		        else {
+		            check = 0;
 		            $('#LastStatus').html('Invalid, please input field firstname');
 		            $('#LastStatus').css('color', 'red');
+		            $('#LastStatus').css('display', 'block');
 		        }
 		    });
 
-		    $('#txtPhone').change(function(e) {
+		    $('#txtPhone').blur(function() {
 		        if (validatePhone('txtPhone')) {
-		            $('#PhoneStatus').html('Valid phonenumber correct');
-		            $('#PhoneStatus').css('color', 'green');
+		            check = 1;
+		            $('#PhoneStatus').css('display', 'none');
 		        }
 		        else {
+		            check = 0;
 		            $('#PhoneStatus').html('Invalid, please input field phonenumber');
+		            $('#PhoneStatus').css('display', 'block');
 		            $('#PhoneStatus').css('color', 'red');
 		        }
 		    });
 
 		    $('#txtEmail').change(function(e) {
 		        if (validateEmail('txtEmail')) {
-		            $('#EmailStatus').html('Valid email correct');
-		            $('#EmailStatus').css('color', 'green');
+		            //$('#EmailStatus').html('Valid email correct');
+		            check = 1;
+		            $('#EmailStatus').css('display', 'none');
 		        }
 		        else {
+		            check = 0;
 		            $('#EmailStatus').html('Invalid email, please input field email');
 		            $('#EmailStatus').css('color', 'red');
+		            $('#EmailStatus').css('display', 'block');
 		        }
 		    });
 
 		    $('#txtDate').change(function(e) {
 		        if (validateDate('txtDate')) {
-		            $('#DateStatus').html('Valid date correct');
-		            $('#DateStatus').css('color', 'green');
+		            //$('#DateStatus').html('Valid date correct');
+		            check = 1;
+		            $('#DateStatus').css('display', 'none');
 		        }
 		        else {
+		            check = 0;
 		            $('#DateStatus').html('Invalid date, please input field date');
 		            $('#DateStatus').css('color', 'red');
+		            $('#DateStatus').css('display', 'block');
+		        }
+		    });
+		    $('button[type="submit"]').attr('disabled','disabled');
+		    $('input[type="text"]').change(function() {
+		        if(check == 1) {
+		            $('button[type="submit"]').removeAttr('disabled');
+		        } else {
+		        	$('button[type="submit"]').attr('disabled','disabled');
 		        }
 		    });
 
@@ -156,6 +178,7 @@
 		        return false;
 		    }
 		}
+
 		function validateLName(txtLname) {
 		    var a = document.getElementById(txtLname).value;
 		    var filter = /^([a-zA-Z]{3,16})$/;
@@ -200,34 +223,24 @@
 		    }
       	}
 
-		// $(document).ready(function() {
-		// 	$( "#button" ).prop( "disabled", true );
-		// 	$('#button').on('click', function() {
-				
-		// 		$('input').each(function() {
-		// 			//alert('áda');
-		// 			var input = $(this).val();
-		// 			if( input == '') {
-		// 					$( "#button" ).prop( "disabled", false );
-						
-		// 				} else {
-		// 					$( "#button" ).prop( "disabled", true );
-		// 				}
-		// 				return false;
-		// 			});
-		// 		});	
 
-		// });
-		$(document).ready(function() {
-		    $('button[type="submit"]').attr('disabled', true);
-			$('input[type="text"]').on('keyup',function() {
-			    if($(this).val() != '') {
-			        $('button[type="submit"]').attr('disabled' , false);
-			    }else{
-			        $('button[type="submit"]').attr('disabled' , true);
-			    }
-			});
-	 	});
+		// $(document).ready(function() {
+
+		//     $('button[type="submit"]').attr('disabled', true);
+		// 	$('#button').on('click', function() {
+		// 		//alert('dadad');
+		// 		$('input').each(function() {
+		// 			var input = $(this).val();
+
+		// 		    if( input == '') {
+		// 		    	$('button[type="submit"]').attr('disabled', false);
+		// 		    }else {
+		// 		    	$('button[type="submit"]').attr('disabled', true);
+		// 		    }
+		// 		});
+
+		// 	});
+	 // 	});
 	</script>	
 	</body>
 </html>
