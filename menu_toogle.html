@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+	<title></title>
+	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css" media="screen">
+		/*.menu_bar {
+			float: right;
+			cursor: pointer;
+			.bar1, .bar2, .bar3 {
+				width: 35px;
+			    height: 5px;
+			    background-color: #f0f0f0;;
+			    margin: 6px 0;
+			    transition: 0.4s;
+			}
+			&:after {
+				content: '';
+				clear: both;
+				display: block;
+			}
+		}
+		.mobile-menu {
+			display: none;
+			width: 100%;
+			padding: 11px;
+			background-color: #3e4156;
+			color: $white;
+			text-transform: uppercase;
+			font-weight: 600;
+			height: 58px;
+			line-height: 36px;
+			.change {
+				.bar1 {
+					transform: rotate(-45deg) translate(-9px, 6px);
+				}
+				.bar2 {
+					opacity: 0;
+				}
+				.bar3 {
+					transform: rotate(45deg) translate(-8px, -8px);
+				}
+			}
+			&:hover {
+				background-color: #3e4156;
+				color: $white;
+				text-decoration: none;
+			}
+		}
+		.menu {
+			display: block;
+			background-color: #0c0c0c;
+			
+			li {
+				display: inline-block;
+				position: relative;
+				z-index: 100;
+				a {
+					font-size: 15px;
+					text-transform: uppercase;
+					text-decoration: none;
+					padding: 12px;
+					display: block;
+					color: $white;
+					transition: all 0.2s ease-in-out 0s;
+					&:hover {
+						color: $white;
+						background:#9ca3da;
+					}
+				}
+				&:hover {
+					a {
+						color: $white;
+						background-color: #9ca3da;
+					}
+					//sub_menu_hover
+					ul {
+						display: block;
+					}
+				}
+			}
+			//sub_menu
+			ul {
+				display: none;
+				margin: 0;
+				padding: 0;
+				width: 150px;
+				position: absolute;
+				top: 43px;
+				left: 0px;
+				background-color: $white;
+				ul {
+					left: 149px;
+					top: 0;
+				}
+				li {
+					display: block;
+					float: none;
+					background-color: none;
+					margin: 0;
+					padding: 0;
+					a {
+						font-size: 12px;
+						text-decoration: none;
+						text-transform: uppercase;
+						font-weight: normal;
+						display: block;
+						color: #797979;
+						border-left: 3px solid $white;
+						background-color: $white;	
+						&:hover {
+							background-color: #f0f0f0;
+							border-left: 3px solid #9da3da;
+							color: #797979;
+						}
+					}
+					&:hover {
+						a {
+							background-color: #f0f0f0;
+							border-left: 3px solid #9da3da;
+							color: #797979;
+						}
+					}
+				}
+			}
+		}
+		@media (max-width: 768px) {
+			.mobile-menu {
+				display: block;
+				color: #000;
+			}
+			nav {
+				margin: 0;
+				.menu {
+					margin: 0;
+					padding: 0;
+					display: none;
+					ul.sub-menu {
+						display: none;
+						position: relative;
+						top: 0;
+						left: 0;
+						width: 100%;
+						ul {
+							left: 0;
+						}
+					}
+					li {
+						display: block;
+						margin: 0;
+						a {
+							background-color: #ccc;
+							color: #797979;
+							border-top: 1px solid #e0e0e0;
+							border-left: 3px solid $white;
+						}
+						&:hover {
+							a {
+								background-color: #f0f0f0;
+								color: #797979;
+								border-left: 3px solid #9ca3da;
+							}
+						}
+					}
+				}
+			}
+			
+		}*/
+
+.menu_bar {
+    float: right;
+    cursor: pointer;
+}
+
+.menu_bar .bar1, .menu_bar .bar2, .menu_bar .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #f0f0f0;
+    margin: 6px 0;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.menu_bar:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.mobile-menu {
+    display: none;
+    width: 100%;
+    padding: 11px;
+    background-color: #3e4156;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    height: 58px;
+    line-height: 36px;
+}
+
+.mobile-menu .change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+        -ms-transform: rotate(-45deg) translate(-9px, 6px);
+            transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.mobile-menu .change .bar2 {
+    opacity: 0;
+}
+
+.mobile-menu .change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+        -ms-transform: rotate(45deg) translate(-8px, -8px);
+            transform: rotate(45deg) translate(-8px, -8px);
+}
+
+.mobile-menu:hover {
+    background-color: #3e4156;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu {
+    display: block;
+    background-color: #0c0c0c;
+}
+
+.menu li {
+    display: inline-block;
+    position: relative;
+    z-index: 100;
+}
+
+.menu li a {
+    font-size: 15px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px;
+    display: block;
+    color: #fff;
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.menu li a:hover {
+    color: #fff;
+    background: #9ca3da;
+}
+
+.menu li:hover a {
+    color: #fff;
+    background-color: #9ca3da;
+}
+
+.menu li:hover ul {
+    display: block;
+}
+
+.menu ul {
+    display: none;
+    margin: 0;
+    padding: 0;
+    width: 150px;
+    position: absolute;
+    top: 43px;
+    left: 0px;
+    background-color: #fff;
+}
+
+.menu ul ul {
+    left: 149px;
+    top: 0;
+}
+
+.menu ul li {
+    display: block;
+    float: none;
+    background-color: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li a {
+    font-size: 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: normal;
+    display: block;
+    color: #797979;
+    border-left: 3px solid #fff;
+    background-color: #fff;
+}
+
+.menu ul li a:hover {
+    background-color: #f0f0f0;
+    border-left: 3px solid #9da3da;
+    color: #797979;
+}
+
+.menu ul li:hover a {
+    background-color: #f0f0f0;
+    border-left: 3px solid #9da3da;
+    color: #797979;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu {
+        display: block;
+        color: #000;
+    }
+    nav {
+        margin: 0;
+    }
+    nav .menu {
+        margin: 0;
+        padding: 0;
+        display: none;
+    }
+    nav .menu ul.sub-menu {
+        display: none;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+    nav .menu ul.sub-menu ul {
+        left: 0;
+    }
+    nav .menu li {
+        display: block;
+        margin: 0;
+    }
+    nav .menu li a {
+        background-color: #ccc;
+        color: #797979;
+        border-top: 1px solid #e0e0e0;
+        border-left: 3px solid #fff;
+    }
+    nav .menu li:hover a {
+        background-color: #f0f0f0;
+        color: #797979;
+        border-left: 3px solid #9ca3da;
+    }
+}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <script type="text/javascript">
+		$(document).ready(function() {
+
+  var touch   = $('#touch-menu');
+  var menu  = $('.menu');
+  var fade_dow = $('.fade_dow');
+  var sub_menu  = $('.sub-menu');
+  var menu_bar = $('.menu_bar');
+  //bar
+  
+  $(touch).on('click', function(e) {
+    e.preventDefault();
+    menu_bar.toggleClass('change');
+    menu.slideToggle();
+  });
+
+    var allsub = $('.sub-menu');
+
+    fade_dow.on('click', function(e) {
+      e.preventDefault();
+      // allsub.addClass('active');
+      allsub.slideUp();
+
+      //preventDefault ngăn chặn hành vi mặc định của sự kiện
+      // $(this).parent().parent().find('.sub-menu').toggle(330);
+      //$(this).closest('li').find('.sub-menu').toggle('show');
+      //allsub.not( "active" );
+
+      if ( !$(this).closest('li').find('.sub-menu').is(":visible") ) {
+        $(this).parent().next().slideDown();
+      }else{
+        $(this).parent().next().slideUp();
+      }
+      
+
+      return false;
+      //$this tham chieu doi tuong cha khi thay doi pham vi 
+
+  });
+
+
+  $(window).resize(function() {
+    var w = $(window).width();
+    if(w > 768 && menu.is(':hidden')) {
+      menu.removeAttr('style');
+    }
+  });
+
+});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+            <a id="touch-menu" class="mobile-menu" href="#" >Menu
+                <div class="menu_bar"">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>     
+            </a>
+            <nav>
+                <ul class="menu">
+                    <li><a href="" title="">ABOUT <i class="fa fa-chevron-down fade_dow"></i></a>
+                        <ul class="sub-menu">
+                           <li><a href="#">Sub-Menu 1</a></li>
+                           <li><a href="#">Sub-Menu 2</a></li>
+                           <li><a href="#">Sub-Menu 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="" title="">MEDIA</a></li>
+                    <li><a href="" title="">EVENTS <i class="fa fa-chevron-down fade_dow"></i></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Sub-Menu 1</a></li>
+                            <li><a href="#">Level 3 Menu</a>
+                                <ul>
+                                    <li><a href="#">Sub-Menu 4</a></li>
+                                    <li><a href="#">Sub-Menu 5</a></li>
+                                    <li><a href="#">Sub-Menu 6</a></li>
+                                </ul>
+                            </li>
+                        </ul>    
+                    </li>
+                    <li><a href="" title="">SHOP</a></li>
+                    <li><a href="" title="">GIVE</a></li>
+                </ul>
+            </nav>  
+        </div>
+	
+</body>
+</html>
