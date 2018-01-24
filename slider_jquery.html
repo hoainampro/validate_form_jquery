@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<link rel="stylesheet" href="">
+		<style type="text/css" media="screen">
+			.neoslideshow {
+				position: relative;
+				width: 500px;
+				height: 260px;
+			}
+			.neoslideshow img {
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 10;
+			}
+			#galprev,
+			#galnext {position: absolute; z-index:20; top: 125px; cursor: pointer; background: #000; color: #fff; width: 28px; height: 20px; line-height: 20px; text-align: center}
+			#galprev {left: 0;}
+			#galnext {right: 0}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="jquery.min.js" type="text/javascript" charset="utf-8" async defer></script>
+		<script>
+			// $(function() {
+
+			// 	$('.neoslideshow img:gt(0)').hide();
+			// 	//setInterval xac dinh so time thuc hien . run mai mai
+			// 	setInterval(function() {
+			// 		$('.neoslideshow :first-child').fadeOut()
+			// 		.next('img').fadeIn()
+			// 		.end().appendTo('.neoslideshow');
+			// 	}, 3000);
+
+			// });
+
+			$(function() {
+
+			    var galitem = $('.neoslideshow').children();
+			    // Đếm các ảnh trong gallery
+			    var galsize = $('.neoslideshow img').size();
+			    // Thêm nút Prev và Next vào gallery
+			    $('.neoslideshow').append('<div id="galprev">Prev</div><div id="galnext">Next</div>');
+			    // Ẩn tất cả các ảnh và hiện ảnh đầu tiên
+			    $('.neoslideshow img:gt(0)').hide();
+			    currentimg = 0;
+			    // Thêm id để phân biệt riêng từng ảnh
+			    galitem.attr("id", function (arr) {
+			        return "galleryitem" + arr;
+			    });
+			     
+			    // Thêm sự kiện click vào nút Prev
+			    $('#galprev').click(function () { 
+			        if (currentimg > 0) {
+			            previmg(currentimg);
+			            currentimg = currentimg - 1;
+			        }
+			    });
+			    // Thêm sự kiện click vào nút Next
+			    $('#galnext').click(function () { 
+			        if (currentimg < galsize - 1) {
+			            nextimg(currentimg, galsize);
+			            currentimg = currentimg + 1;
+			        }
+			    });
+			});
+			 
+			// Hàm xử lý khi nút Next được ấn
+			function nextimg($img, $size) {
+			    $n_img = $img + 1;
+			    if ($n_img < $size) {
+			        $('#galleryitem' + $img).fadeOut();
+			        $('#galleryitem' + $n_img).fadeIn();
+			    }
+			}
+
+			// Hàm xử lý khi nút Previous được ấn
+			function previmg($img) {
+			    $p_img = $img - 1;
+			    if ($p_img >= 0) {
+			        $('#galleryitem' + $img).fadeOut();
+			        $('#galleryitem' + $p_img).fadeIn();
+			    }
+			}
+					
+		</script>
+	</head>
+	<body>
+		<div class="neoslideshow">
+	      	<img src="girl.jpg" width="500" height="260" />
+	      	<img src="girl_2.jpg" width="500" height="260" />
+	     	<img src="girl_3.jpg" width="500" height="260" />
+	      	<img src="girl.jpg" width="500" height="260" />
+	      	<img src="girl_2.jpg" width="500" height="260" />
+   		</div>
+	</body>
+</html>

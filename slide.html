@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>slider</title>
+	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css" media="screen">
+
+		#slider {
+			position: relative;
+			overflow: hidden;
+			margin: 20px auto 0 auto;
+		}
+
+		#slider ul {
+			position: relative;
+			margin: 0;
+			padding: 0;
+			height: 200px;
+			list-style: none;
+		}
+
+		#slider ul li {
+			position: relative;
+			display: block;
+			float: left;
+			width: 500px;
+			height: 300px;
+			text-align: center;
+			line-height: 300px;
+		}
+
+		a.control_prev, a.control_next {
+			position: absolute;
+			top: 40%;
+			z-index: 999;
+			display: block;
+			padding: 4% 3%;
+			width: auto;
+			height: auto;
+			background: #2a2a2a;
+			color: #fff;
+			text-decoration: none;
+			font-weight: 600;
+			font-size: 18px;
+			opacity: 0.8;
+			cursor: pointer;
+		}
+
+		a.control_prev:hover, a.control_next:hover {
+			opacity: 1;
+			-webkit-transition: all 0.2s ease;
+		}
+
+		a.control_prev {
+			border-radius: 0 2px 2px 0;
+		}
+
+		a.control_next {
+			right: 0;
+			border-radius: 2px 0 0 2px;
+		}
+
+		.slider_option {
+			position: relative;
+			margin: 10px auto;
+			width: 160px;
+			font-size: 18px;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+
+			var slideCount = $('#slider ul li').length;
+			var slideWidth = $('#slider ul li').width();
+			var slideHeight = $('#slider ul li').height();
+			var slideUIWidth = slideCount * slideWidth;
+
+			$('#slider').css({width:slideWidth, height:slideHeight });
+			$('#slider ul').css({width:slideUIWidth, marginLeft: - slideWidth });
+			//prependTo chen noi  dung toi thanh phan truoc 
+			$('#slider ul li:last-child').prependTo('#slider ul');
+
+			function moveleft() {
+				$('#slider ul').animate({
+					left: + slideWidth
+				}, 200, function() {
+					$('#slider ul li:last-child').prependTo('#slider ul');
+					$('#slider ul').css('left', '');
+				});
+			};
+
+			function moverigth() {
+				$('#slider ul').animate({
+					left: - slideWidth
+				}, 200, function() {
+					$('#slider ul li:last-child').prependTo('#slider ul');
+					$('#slider ul').css('left', '');
+				});
+			};
+
+			$('a.control_prev').click(function(event) {
+				moveleft();
+			});
+
+			$('a.control_next').click(function(event) {
+				moverigth();
+			});
+
+		});
+	</script>
+</head>
+	<body>
+		<div id="slider">
+			<a href="#" class="control_next"><i class="fa fa-chevron-right"></i></a>
+			<a href="#" class="control_prev"><i class="fa fa-chevron-left"></i></a>
+			<ul>
+				<li style="background-size: contain;background-repeat: no-repeat;background-image: url(girl.jpg)">SLIDE 1</li>
+				<li style="background-size: contain;background-repeat: no-repeat;background-image: url(girl_2.jpg)">SLIDE 2</li>
+				<li style="background-size: contain;background-repeat: no-repeat;background-image: url(girl_3.jpg)">SLIDE 3</li>
+				<li style="background-size: contain;background-repeat: no-repeat;background-image: url(girl.jpg)">SLIDE 4</li>
+			</ul>  
+		</div>
+	</body>
+</html>
